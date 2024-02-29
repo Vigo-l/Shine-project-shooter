@@ -364,6 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 1291084487696280825}
   cam: {fileID: 5233342245482606721}
+  nickname: 
 --- !u!135 &4902739455396995384
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1195,9 +1196,9 @@ MonoBehaviour:
   playerHitVFX: {fileID: 8701423201119416030, guid: 3bcbc74d0d9f77e498d0501d817ad493, type: 3}
   shotVFX: {fileID: 602388786661906176, guid: 687b8fb377048434586d2f63f513752e, type: 3}
   smokeVFX: {fileID: 3969829775504605860, guid: ba4858936dda6e14cbae3e75376a7ff0, type: 3}
-  recoverPercent: 1.59
-  recoilUp: 0.23
-  recoilBack: 0.11
+  recoverPercent: 1.51
+  recoilUp: 0.37
+  recoilBack: 0.32
   recovering: 0
 --- !u!114 &1033962758625415473
 MonoBehaviour:

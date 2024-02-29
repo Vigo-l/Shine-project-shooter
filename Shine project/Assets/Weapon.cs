@@ -56,6 +56,7 @@ public class Weapon : MonoBehaviour
         magText.text = mag.ToString();
         ammoText.text = ammo + "/" + magammo;
 
+
         originalPosition = transform.localPosition;
 
         recoilLenght = 0;
@@ -80,7 +81,7 @@ public class Weapon : MonoBehaviour
             ammoText.text = ammo + "/" + magammo;
         }
 
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.R) && animationGun.isPlaying == false && ammo != 15)
         {
             Reload();
         }
@@ -148,6 +149,7 @@ public class Weapon : MonoBehaviour
                 PhotonNetwork.Instantiate(playerHitVFX.name, hit.point, Quaternion.identity);
                 hit.transform.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage);
                 Debug.Log("hit!");
+
             }
             else
             {

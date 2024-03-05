@@ -1903,6 +1903,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tunnelviosion_map 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 367604f99c24fc84198d2599d504149a, type: 3}
+      propertyPath: m_TagString
+      value: Death
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

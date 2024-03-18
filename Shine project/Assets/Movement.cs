@@ -13,6 +13,8 @@ public class Movement : MonoBehaviour
     private bool jumping;
     private bool grounded;
     [Space]
+    public Animation animationplayer;
+    public AnimationClip walking;
 
     
 
@@ -54,6 +56,11 @@ public class Movement : MonoBehaviour
             else if (input.magnitude > 0.5f)
             {
                 rb.AddForce(CalculateMovement(sprinting ? sprintSpeed : walkspeed), ForceMode.VelocityChange);
+                animationplayer.Play(walking.name);
+            }
+            else if (input.magnitude < 0.5f)
+            {
+                animationplayer.Rewind(walking.name);
             }
             else
             {

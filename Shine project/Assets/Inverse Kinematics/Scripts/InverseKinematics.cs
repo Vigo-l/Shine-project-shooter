@@ -10,7 +10,10 @@ public class InverseKinematics : MonoBehaviour {
 	public Transform forearm;
 	public Transform hand;
 	public Transform elbow;
-	public Transform target;
+	private Transform target;
+
+	public GameObject Pistol;
+	public GameObject Revolver;
 	[Space(20)]
 	public Vector3 uppperArm_OffsetRotation;
 	public Vector3 forearm_OffsetRotation;
@@ -19,6 +22,8 @@ public class InverseKinematics : MonoBehaviour {
 	public bool handMatchesTargetRotation = true;
 	[Space(20)]
 	public bool debug;
+
+	public WeaponSwitcher weaponSwitcher;
 
 	float angle;
 	float upperArm_Length;
@@ -31,9 +36,21 @@ public class InverseKinematics : MonoBehaviour {
 	void Start () {
 
 	}
-	
-	// Update is called once per frame
-	void LateUpdate () {
+
+    private void Update()
+    {
+        if (weaponSwitcher.selectedWeapon == 0)
+		{
+			target = Pistol.transform;
+		}
+        else if (weaponSwitcher.selectedWeapon == 1)
+        {
+            target = Revolver.transform;
+        }
+    }
+
+    // Update is called once per frame
+    void LateUpdate () {
 		if(upperArm != null && forearm != null && hand != null && elbow != null && target != null){
 			upperArm.LookAt (target, elbow.position - upperArm.position);
 			upperArm.Rotate (uppperArm_OffsetRotation);

@@ -2175,7 +2175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &746445056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2188,6 +2188,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb05b249eb26bdd49b51a99d18172a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playersHolder: {fileID: 1303672355}
+  refreshRate: 1
+  slots:
+  - {fileID: 1348616329}
+  - {fileID: 909471681}
+  - {fileID: 2038695326}
+  - {fileID: 697961726}
+  - {fileID: 1386913332}
+  - {fileID: 1664301427}
+  - {fileID: 1675159155}
+  scoreTexts:
+  - {fileID: 1866740846}
+  - {fileID: 8395694}
+  - {fileID: 793210057}
+  - {fileID: 682155445}
+  - {fileID: 1207738394}
+  - {fileID: 564158681}
+  - {fileID: 942305730}
+  NameTexts:
+  - {fileID: 1863913301}
+  - {fileID: 339045937}
+  - {fileID: 1097628123}
+  - {fileID: 183911648}
+  - {fileID: 1702418154}
+  - {fileID: 1257222484}
+  - {fileID: 542188698}
 --- !u!114 &746445057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3676,7 +3702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1303672356
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4762,8 +4788,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a4c69f7a9d3ea43907b5765229dc85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TextureWarpingFactor: 1
-  _TextureWarpingMode: 0
+  _TextureWarpingFactor: 0.008
+  _TextureWarpingMode: 1
   _VertexGridResolution: 17
   _VertexWobbleMode: 0
   _UseRetroVertexLighting: 1

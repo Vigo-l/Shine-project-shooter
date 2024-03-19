@@ -1,4 +1,5 @@
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -144,6 +145,10 @@ public class Weapon : MonoBehaviour
         {
             if (hit.transform.gameObject.GetComponent<Health>()) 
             {
+                if (damage >= hit.transform.gameObject.GetComponent<Health>().health)
+                {
+                    PhotonNetwork.LocalPlayer.AddScore(1);
+                }
                 GameObject bloodPrefabInstance = Instantiate(_BloodPrefab, hit.point, Quaternion.LookRotation(hit.normal));
                 bloodPrefabInstance.transform.parent = hit.transform;
                 PhotonNetwork.Instantiate(playerHitVFX.name, hit.point, Quaternion.identity);

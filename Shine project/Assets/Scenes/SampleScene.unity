@@ -4793,8 +4793,8 @@ MonoBehaviour:
   _VertexGridResolution: 17
   _VertexWobbleMode: 0
   _UseRetroVertexLighting: 1
-  _RetroLightingNormalFactor: 1
-  _RetroLightFalloffStart: 0
+  _RetroLightingNormalFactor: 0.365
+  _RetroLightFalloffStart: 0.9999
   _FlatShadingMode: 0
   _TriangleSortMode: 0
   _DepthDebugView: 0

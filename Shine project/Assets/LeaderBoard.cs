@@ -17,9 +17,10 @@ public class LeaderBoard : MonoBehaviour
     [Space]
     public GameObject[] slots;
     [Space]
-    public TextMeshProUGUI[] scoreTexts;
+    public TextMeshProUGUI[] KillsTexts;
     public TextMeshProUGUI[] NameTexts;
-    void Start()
+    public TextMeshProUGUI[] DeathsTexts;
+    private void Start()
     {
         InvokeRepeating(nameof(Refresh), 1f, refreshRate);
     }
@@ -33,7 +34,8 @@ public class LeaderBoard : MonoBehaviour
 
         }
 
-        var sortedPlayerList = (from player in PhotonNetwork.PlayerList orderby player.GetScore() descending select player).ToList();
+        var sortedPlayerList = 
+            (from player in PhotonNetwork.PlayerList orderby player.GetScore() descending select player).ToList();
 
         int i = 0;
         foreach (var player in sortedPlayerList)
@@ -44,10 +46,22 @@ public class LeaderBoard : MonoBehaviour
                 player.NickName = "unnamed";
 
             NameTexts[i].text = player.NickName;
-            scoreTexts[i].text = player.GetScore().ToString();
+
+            if (player.CustomProperties["kills"] != null)
+            {
+                KillsTexts[i].text = player.CustomProperties["kills"] + "";
+                DeathsTexts[i].text = player.CustomProperties["deaths"] + "";
+            }
+            else
+            {
+                KillsTexts[i].text =  "0";
+                DeathsTexts[i].text = "0";
+            }
 
             i++;
         }
+
+
 
 
 }

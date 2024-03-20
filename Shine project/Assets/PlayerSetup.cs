@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 
+
 public class PlayerSetup : MonoBehaviour
 {
     public Movement movement;
@@ -11,8 +12,12 @@ public class PlayerSetup : MonoBehaviour
     public string nickname;
     public TextMeshPro nicknametext;
 
+    public Transform TPweaponHolder;
+
     public void IsLocalPlayer()
     {
+
+        TPweaponHolder.gameObject.SetActive(false);
         movement.enabled = true;
         cam.SetActive(true);
     }
@@ -24,4 +29,18 @@ public class PlayerSetup : MonoBehaviour
         nickname = _name;
         nicknametext.text = nickname;
     }
+
+    [PunRPC]
+
+    public void SetTpWeapon(int _weaponIndex)
+    {
+        foreach (Transform _weapon in TPweaponHolder)
+        {
+            _weapon.gameObject.SetActive(false);
+        }
+
+        TPweaponHolder.GetChild(_weaponIndex).gameObject.SetActive(true);
+    }
+
+
 }

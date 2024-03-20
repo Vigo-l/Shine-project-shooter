@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 public class RoomManager : MonoBehaviourPunCallbacks
 {
     public static RoomManager instance;
@@ -23,6 +23,11 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public GameObject connectingUI;
 
     private string Nickname = "unnamed";
+
+    [HideInInspector]
+    public int kills = 0;
+    [HideInInspector]
+    public int deaths = 0;
 
 
     void Awake()
@@ -89,4 +94,22 @@ public class RoomManager : MonoBehaviourPunCallbacks
         _player.GetComponent<PhotonView>().RPC("SetNickName", RpcTarget.AllBuffered, Nickname);
         PhotonNetwork.LocalPlayer.NickName = Nickname;
     }
+    public void SetHashes()
+    {
+        try
+        {
+            Hashtable hash = PhotonNetwork.LocalPlayer.CustomProperties;
+
+            hash["kills"] = kills;
+            hash["deaths"] = deaths;
+
+            PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+
+        }
+        catch
+        {
+
+        }
+    }
+
 }

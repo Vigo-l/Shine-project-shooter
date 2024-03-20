@@ -148,6 +148,8 @@ public class Weapon : MonoBehaviour
                 if (damage >= hit.transform.gameObject.GetComponent<Health>().health)
                 {
                     PhotonNetwork.LocalPlayer.AddScore(1);
+                    RoomManager.instance.kills++;
+                    RoomManager.instance.SetHashes();
                 }
                 GameObject bloodPrefabInstance = Instantiate(_BloodPrefab, hit.point, Quaternion.LookRotation(hit.normal));
                 bloodPrefabInstance.transform.parent = hit.transform;

@@ -24,6 +24,9 @@ public class Health : MonoBehaviour
             if (isLocalPlayer) 
             {
                 RoomManager.instance.RespawnPlayer();
+
+                RoomManager.instance.deaths++;
+                RoomManager.instance.SetHashes();
             }
             Destroy(gameObject);
             

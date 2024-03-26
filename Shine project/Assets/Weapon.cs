@@ -1,7 +1,5 @@
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -15,7 +13,7 @@ public class Weapon : MonoBehaviour
 
     public float fireRate;
 
-    public int mag = 5; 
+    public int mag = 5;
 
     public int ammo = 15;
     public int magammo = 15;
@@ -36,7 +34,7 @@ public class Weapon : MonoBehaviour
     public GameObject smokeVFX;
 
     private float nextFire;
-    [Header ("Recoil")]
+    [Header("Recoil")]
     [Range(0, 2)]
     public float recoverPercent = 0.7f;
     [Space]
@@ -66,7 +64,10 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        if (nextFire >0)
+        magText.text = mag.ToString();
+        ammoText.text = ammo + "/" + magammo;
+
+        if (nextFire > 0)
         {
             nextFire -= Time.deltaTime;
         }
@@ -82,12 +83,12 @@ public class Weapon : MonoBehaviour
             ammoText.text = ammo + "/" + magammo;
         }
 
-        if(Input.GetKeyDown(KeyCode.R) && animationGun.isPlaying == false && ammo != 15)
+        if (Input.GetKeyDown(KeyCode.R) && animationGun.isPlaying == false && ammo != 15)
         {
             Reload();
         }
 
-        if(ammo <= 0 && mag > 0)
+        if (ammo <= 0 && mag > 0)
         {
             EmptyReload();
         }
@@ -102,7 +103,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-     void Reload()
+    void Reload()
     {
         if (mag > 0)
         {
@@ -121,13 +122,13 @@ public class Weapon : MonoBehaviour
         if (animationGun.isPlaying == false)
         {
             animationGun.Play(emptyReloadGun.name);
-        mag--;
+            mag--;
 
-        ammo = magammo;
-        magText.text = mag.ToString();
-        ammoText.text = ammo + "/" + magammo;
+            ammo = magammo;
+            magText.text = mag.ToString();
+            ammoText.text = ammo + "/" + magammo;
         }
-       
+
     }
 
     void Fire()
@@ -143,7 +144,7 @@ public class Weapon : MonoBehaviour
 
         if (Physics.Raycast(ray.origin, ray.direction, out hit, 100f))
         {
-            if (hit.transform.gameObject.GetComponent<Health>()) 
+            if (hit.transform.gameObject.GetComponent<Health>())
             {
                 if (damage >= hit.transform.gameObject.GetComponent<Health>().health)
                 {
@@ -172,7 +173,7 @@ public class Weapon : MonoBehaviour
 
         transform.localPosition = Vector3.SmoothDamp(transform.localPosition, finalPosition, ref recoilVelocity, recoilLenght);
 
-        if (transform.localPosition == finalPosition) 
+        if (transform.localPosition == finalPosition)
         {
             recoiling = false;
             recovering = true;

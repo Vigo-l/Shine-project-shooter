@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Photon.Pun;
+using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 public class RoomManager : MonoBehaviourPunCallbacks
 {
@@ -9,8 +7,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public GameObject Player;
     [Space]
-    public Transform [] spawnPoints;
-    
+    public Transform[] spawnPoints;
+
 
     [Space]
 
@@ -37,7 +35,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public void ChangeNickname(string _name)
     {
-            Nickname = _name;
+        Nickname = _name;
     }
 
     public void JoinRoomButtonPressed()
@@ -86,7 +84,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
 
-        
+
         GameObject _player = PhotonNetwork.Instantiate(Player.name, spawnPoint.position, Quaternion.identity);
         _player.GetComponent<PlayerSetup>().IsLocalPlayer();
         _player.GetComponent<Health>().isLocalPlayer = true;

@@ -1,6 +1,6 @@
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -11,10 +11,11 @@ public class WeaponRevolver : MonoBehaviour
     public Camera cam;
     [SerializeField]
     private GameObject _BloodPrefab;
+    public GameObject DeathVfx;
 
     public float fireRate;
 
-    public int mag = 5; 
+    public int mag = 5;
 
     public int ammo = 15;
     public int magammo = 15;
@@ -34,14 +35,8 @@ public class WeaponRevolver : MonoBehaviour
     public GameObject shotVFX;
     public GameObject smokeVFX;
 
-    [Space]
-    public AudioSource Revolver;
-    public AudioClip Click;
-    public AudioClip Fire;
-
-
     private float nextFire;
-    [Header ("Recoil")]
+    [Header("Recoil")]
     [Range(0, 2)]
     public float recoverPercent = 0.7f;
     [Space]
@@ -53,6 +48,7 @@ public class WeaponRevolver : MonoBehaviour
 
     private bool recoiling;
     public bool recovering;
+
     private bool shooting;
 
     private float recoilLenght;
@@ -72,7 +68,10 @@ public class WeaponRevolver : MonoBehaviour
 
     private void Update()
     {
-        if (nextFire >0)
+        magText.text = mag.ToString();
+        ammoText.text = ammo + "/" + magammo;
+
+        if (nextFire > 0)
         {
             nextFire -= Time.deltaTime;
         }
@@ -88,12 +87,12 @@ public class WeaponRevolver : MonoBehaviour
             ammoText.text = ammo + "/" + magammo;
         }
 
-        if(Input.GetKeyDown(KeyCode.R) && animationGun.isPlaying == false && ammo != 15 && shooting == false)
+        if (Input.GetKeyDown(KeyCode.R) && animationGun.isPlaying == false && ammo != 15 && shooting == false)
         {
             Reload();
         }
 
-        if(ammo <= 0 && mag > 0 && shooting == false)
+        if (ammo <= 0 && mag > 0 && shooting == false)
         {
             EmptyReload();
         }
@@ -108,7 +107,7 @@ public class WeaponRevolver : MonoBehaviour
         }
     }
 
-     void Reload()
+    void Reload()
     {
         if (mag > 0)
         {
@@ -127,18 +126,18 @@ public class WeaponRevolver : MonoBehaviour
         if (animationGun.isPlaying == false)
         {
             animationGun.Play(emptyReloadGun.name);
-        mag--;
+            mag--;
 
-        ammo = magammo;
-        magText.text = mag.ToString();
-        ammoText.text = ammo + "/" + magammo;
+            ammo = magammo;
+            magText.text = mag.ToString();
+            ammoText.text = ammo + "/" + magammo;
         }
-       
+
     }
 
     IEnumerator Shoot()
     {
-        shooting = true; 
+        shooting = true;
         Debug.Log("Click");
         yield return new WaitForSeconds(1);
         recoiling = true;
@@ -148,12 +147,21 @@ public class WeaponRevolver : MonoBehaviour
         PhotonNetwork.Instantiate(shotVFX.name, muzzle.transform.position, muzzle.transform.rotation);
         PhotonNetwork.Instantiate(smokeVFX.name, muzzle.transform.position, muzzle.transform.rotation);
 
+
         RaycastHit hit;
 
         if (Physics.Raycast(ray.origin, ray.direction, out hit, 100f))
         {
-            if (hit.transform.gameObject.GetComponent<Health>()) 
+            if (hit.transform.gameObject.GetComponent<Health>())
             {
+                if (damage >= hit.transform.gameObject.GetComponent<Health>().health)
+                {
+                    PhotonNetwork.LocalPlayer.AddScore(1);
+                    RoomManager.instance.kills++;
+                    RoomManager.instance.SetHashes();
+                    GameObject bloodDeathInstance = Instantiate(DeathVfx, hit.point, Quaternion.LookRotation(hit.normal));
+
+                }
                 GameObject bloodPrefabInstance = Instantiate(_BloodPrefab, hit.point, Quaternion.LookRotation(hit.normal));
                 bloodPrefabInstance.transform.parent = hit.transform;
                 PhotonNetwork.Instantiate(playerHitVFX.name, hit.point, Quaternion.identity);
@@ -165,8 +173,8 @@ public class WeaponRevolver : MonoBehaviour
             {
                 PhotonNetwork.Instantiate(hitVFX.name, hit.point, Quaternion.identity);
             }
+            shooting = false;
         }
-        shooting = false;
     }
 
 
@@ -176,7 +184,7 @@ public class WeaponRevolver : MonoBehaviour
 
         transform.localPosition = Vector3.SmoothDamp(transform.localPosition, finalPosition, ref recoilVelocity, recoilLenght);
 
-        if (transform.localPosition == finalPosition) 
+        if (transform.localPosition == finalPosition)
         {
             recoiling = false;
             recovering = true;

@@ -693,7 +693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1001599535515245626
 Transform:
   m_ObjectHideFlags: 0
@@ -3143,7 +3143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2fdb65f96a8bda74ebb4ba07cd8b60f9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4083501151425157549, guid: 2fdb65f96a8bda74ebb4ba07cd8b60f9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3194,6 +3194,7 @@ MonoBehaviour:
   damage: 25
   cam: {fileID: 7237519424472930503}
   _BloodPrefab: {fileID: 8388239594090714303, guid: 60f57dbd3e0d8904aaf482205485450f, type: 3}
+  DeathVfx: {fileID: 8701423201119416030, guid: 1b1ceebd651ef87418e2537c91a6a9ed, type: 3}
   fireRate: 10
   mag: 5
   ammo: 15
@@ -4610,6 +4611,7 @@ MonoBehaviour:
   damage: 100
   cam: {fileID: 7237519424472930503}
   _BloodPrefab: {fileID: 8388239594090714303, guid: 60f57dbd3e0d8904aaf482205485450f, type: 3}
+  DeathVfx: {fileID: 8701423201119416030, guid: 1b1ceebd651ef87418e2537c91a6a9ed, type: 3}
   fireRate: 3
   mag: 5
   ammo: 6
@@ -4624,9 +4626,6 @@ MonoBehaviour:
   playerHitVFX: {fileID: 8701423201119416030, guid: 3bcbc74d0d9f77e498d0501d817ad493, type: 3}
   shotVFX: {fileID: 602388786661906176, guid: 687b8fb377048434586d2f63f513752e, type: 3}
   smokeVFX: {fileID: 3969829775504605860, guid: ba4858936dda6e14cbae3e75376a7ff0, type: 3}
-  Revolver: {fileID: 146980007563905285}
-  Click: {fileID: 0}
-  Fire: {fileID: 0}
   recoverPercent: 1.21
   recoilUp: 0.7
   recoilBack: 0.99

@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Photon.Pun;
 using TMPro;
-using Photon.Realtime;
+using UnityEngine;
 
 public class Health : MonoBehaviour
 {
@@ -21,7 +18,7 @@ public class Health : MonoBehaviour
         if (health <= 0)
         {
 
-            if (isLocalPlayer) 
+            if (isLocalPlayer)
             {
                 RoomManager.instance.RespawnPlayer();
 
@@ -29,7 +26,7 @@ public class Health : MonoBehaviour
                 RoomManager.instance.SetHashes();
             }
             Destroy(gameObject);
-            
+
         }
     }
 }

@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     public Camera cam;
     [SerializeField]
     private GameObject _BloodPrefab;
+    public GameObject DeathVfx;
 
     public float fireRate;
 
@@ -151,6 +152,8 @@ public class Weapon : MonoBehaviour
                     PhotonNetwork.LocalPlayer.AddScore(1);
                     RoomManager.instance.kills++;
                     RoomManager.instance.SetHashes();
+
+
                 }
                 GameObject bloodPrefabInstance = Instantiate(_BloodPrefab, hit.point, Quaternion.LookRotation(hit.normal));
                 bloodPrefabInstance.transform.parent = hit.transform;

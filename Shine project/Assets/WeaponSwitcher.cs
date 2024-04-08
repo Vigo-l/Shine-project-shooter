@@ -1,6 +1,4 @@
 using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponSwitcher : MonoBehaviour
@@ -30,6 +28,10 @@ public class WeaponSwitcher : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             selectedWeapon = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            selectedWeapon = 2;
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
@@ -69,13 +71,13 @@ public class WeaponSwitcher : MonoBehaviour
         _animation.Play(draw.name);
 
         int i = 0;
-        foreach(Transform _weapon in transform)
+        foreach (Transform _weapon in transform)
         {
             if (i == selectedWeapon)
             {
                 _weapon.gameObject.SetActive(true);
             }
-            else 
+            else
             {
                 _weapon.gameObject.SetActive(false);
             }

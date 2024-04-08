@@ -158,6 +158,7 @@ public class WeaponRevolver : MonoBehaviour
                 {
                     PhotonNetwork.LocalPlayer.AddScore(1);
                     RoomManager.instance.kills++;
+                    mag++;
                     RoomManager.instance.SetHashes();
                     GameObject bloodDeathInstance = Instantiate(DeathVfx, hit.point, Quaternion.LookRotation(hit.normal));
 

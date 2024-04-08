@@ -2,7 +2,7 @@ using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using TMPro;
 using UnityEngine;
-public class Weapon : MonoBehaviour
+public class ARWeapon : MonoBehaviour
 {
     public int damage;
 
@@ -73,7 +73,7 @@ public class Weapon : MonoBehaviour
             nextFire -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && nextFire <= 0 && ammo > 0 && animationGun.isPlaying == false)
+        if (Input.GetKey(KeyCode.Mouse0) && nextFire <= 0 && ammo > 0 && animationGun.isPlaying == false)
         {
             nextFire = 1 / fireRate;
 

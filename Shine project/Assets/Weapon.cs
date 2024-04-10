@@ -27,6 +27,8 @@ public class Weapon : MonoBehaviour
 
     public GameObject muzzle;
 
+    public AudioClip GunShotPistol;
+
 
     public GameObject hitVFX;
     public GameObject playerHitVFX;
@@ -55,6 +57,7 @@ public class Weapon : MonoBehaviour
     {
         magText.text = mag.ToString();
         ammoText.text = ammo + "/" + magammo;
+
 
 
         originalPosition = transform.localPosition;
@@ -134,6 +137,9 @@ public class Weapon : MonoBehaviour
 
     void Fire()
     {
+        AudioSource audio = GetComponent<AudioSource>();
+
+        audio.Play();
         recoiling = true;
         recovering = false;
         Debug.Log("shot gun");

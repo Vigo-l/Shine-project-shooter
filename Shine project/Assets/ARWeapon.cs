@@ -134,6 +134,9 @@ public class ARWeapon : MonoBehaviour
 
     void Fire()
     {
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Stop();
+        audio.Play();
         recoiling = true;
         recovering = false;
         Debug.Log("shot gun");

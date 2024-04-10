@@ -43,6 +43,8 @@ MonoBehaviour:
   - SetNickName
   - SetTpWeapon
   - SpawnBlood
+  - <TakeDamage>g__SpawnBlood|4_0
+  - <TakeDamage>g__SpawnDeathParticle|8_0
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

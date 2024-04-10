@@ -1,5 +1,6 @@
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 public class RoomManager : MonoBehaviourPunCallbacks
 {
@@ -26,11 +27,13 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public int kills = 0;
     [HideInInspector]
     public int deaths = 0;
-
+    KeyCode restart = KeyCode.F3;
 
     void Awake()
     {
         instance = this;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 
     public void ChangeNickname(string _name)
@@ -46,8 +49,14 @@ public class RoomManager : MonoBehaviourPunCallbacks
         nameUI.SetActive(false);
         connectingUI.SetActive(true);
     }
-    void Start()
+    void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            PhotonNetwork.Disconnect();
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
 
     }
 

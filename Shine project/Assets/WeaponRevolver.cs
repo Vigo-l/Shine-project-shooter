@@ -35,6 +35,9 @@ public class WeaponRevolver : MonoBehaviour
     public GameObject shotVFX;
     public GameObject smokeVFX;
 
+    public AudioClip Click;
+    public AudioClip Boom;
+
     private float nextFire;
     [Header("Recoil")]
     [Range(0, 2)]
@@ -137,9 +140,15 @@ public class WeaponRevolver : MonoBehaviour
 
     IEnumerator Shoot()
     {
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Stop();
+        audio.clip = Click;
+        audio.Play();
         shooting = true;
         Debug.Log("Click");
         yield return new WaitForSeconds(1);
+        audio.clip = Boom;
+        audio.Play();
         recoiling = true;
         recovering = false;
         Debug.Log("shot gun");
@@ -160,7 +169,6 @@ public class WeaponRevolver : MonoBehaviour
                     RoomManager.instance.kills++;
                     mag++;
                     RoomManager.instance.SetHashes();
-                    GameObject bloodDeathInstance = Instantiate(DeathVfx, hit.point, Quaternion.LookRotation(hit.normal));
 
                 }
                 GameObject bloodPrefabInstance = Instantiate(_BloodPrefab, hit.point, Quaternion.LookRotation(hit.normal));

@@ -9,7 +9,6 @@ public class Health : MonoBehaviour
 
     public GameObject Damagetaken;
 
-    public GameObject deathParticlePrefab;
 
     public AnimationClip Damage;
 
@@ -41,7 +40,6 @@ public class Health : MonoBehaviour
 
             if (isLocalPlayer)
             {
-                SpawnDeathParticle();
                 RoomManager.instance.RespawnPlayer();
 
                 RoomManager.instance.deaths++;
@@ -51,12 +49,6 @@ public class Health : MonoBehaviour
 
             Destroy(gameObject);
 
-        }
-
-        [PunRPC]
-        void SpawnDeathParticle()
-        {
-            Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
         }
     }
 }

@@ -3066,7 +3066,6 @@ GameObject:
   - component: {fileID: 387678791807690284}
   - component: {fileID: 7616805620785844208}
   - component: {fileID: 5274744056792432585}
-  - component: {fileID: 1224554195729973311}
   - component: {fileID: 5584196483531471163}
   - component: {fileID: 150472119014069206}
   m_Layer: 5
@@ -3133,27 +3132,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &1224554195729973311
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8194033020623124211}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 581be233295d1834a9bf2656083df2aa, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!225 &5584196483531471163
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3162,7 +3140,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8194033020623124211}
   m_Enabled: 1
-  m_Alpha: 0.62
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -3179,7 +3157,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 0d8c807a650f4da4c86996f2682540cd, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!1 &8718688597060943078
@@ -3993,7 +3971,7 @@ MonoBehaviour:
   damage: 34
   cam: {fileID: 7237519424472930503}
   _BloodPrefab: {fileID: 8388239594090714303, guid: 60f57dbd3e0d8904aaf482205485450f, type: 3}
-  DeathVfx: {fileID: 8701423201119416030, guid: 1b1ceebd651ef87418e2537c91a6a9ed, type: 3}
+  DeathVfx: {fileID: 8701423201119416030, guid: 3f22d7442b984e442add5c6c811c6150, type: 3}
   fireRate: 10
   mag: 5
   ammo: 30
@@ -4008,7 +3986,7 @@ MonoBehaviour:
   playerHitVFX: {fileID: 8701423201119416030, guid: 3bcbc74d0d9f77e498d0501d817ad493, type: 3}
   shotVFX: {fileID: 602388786661906176, guid: 687b8fb377048434586d2f63f513752e, type: 3}
   smokeVFX: {fileID: 3969829775504605860, guid: ba4858936dda6e14cbae3e75376a7ff0, type: 3}
-  _deathvfx: {fileID: 8701423201119416030, guid: 1b1ceebd651ef87418e2537c91a6a9ed, type: 3}
+  _deathvfx: {fileID: 8701423201119416030, guid: 3f22d7442b984e442add5c6c811c6150, type: 3}
   recoverPercent: 0.7
   recoilUp: 0.37
   recoilBack: 0.32
@@ -4551,7 +4529,6 @@ MonoBehaviour:
   health: 100
   isLocalPlayer: 0
   Damagetaken: {fileID: 8194033020623124211}
-  deathParticlePrefab: {fileID: 3969829775504605860, guid: 454341e1786a60d4da887777e07688dd, type: 3}
   Damage: {fileID: 7400000, guid: 0d8c807a650f4da4c86996f2682540cd, type: 2}
   voiceLines:
   - {fileID: 8300000, guid: 319a89ed336663b4eb866f6a338e192e, type: 3}

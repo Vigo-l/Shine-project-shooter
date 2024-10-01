@@ -144,7 +144,9 @@ public class ARWeapon : MonoBehaviour
         PhotonNetwork.Instantiate(shotVFX.name, muzzle.transform.position, muzzle.transform.rotation);
         PhotonNetwork.Instantiate(smokeVFX.name, muzzle.transform.position, muzzle.transform.rotation);
 
+
         RaycastHit hit;
+
 
         if (Physics.Raycast(ray.origin, ray.direction, out hit, 100f))
         {
@@ -152,7 +154,6 @@ public class ARWeapon : MonoBehaviour
             {
                 if (damage >= hit.transform.gameObject.GetComponent<Health>().health)
                 {
-                    hit.transform.gameObject.GetComponent<PhotonView>().RPC("SpawnBlood", RpcTarget.AllBuffered);
                     PhotonNetwork.LocalPlayer.AddScore(1);
                     RoomManager.instance.kills++;
                     mag++;
@@ -161,7 +162,15 @@ public class ARWeapon : MonoBehaviour
                 }
                 GameObject bloodPrefabInstance = Instantiate(_BloodPrefab, hit.point, Quaternion.LookRotation(hit.normal));
                 bloodPrefabInstance.transform.parent = hit.transform;
-                PhotonNetwork.Instantiate(playerHitVFX.name, hit.point, Quaternion.identity);
+                if (hit.transform.GetComponent<Health>().health <= 0)
+                {
+                    PhotonNetwork.Instantiate(DeathVfx.name, hit.point, Quaternion.identity);
+                }
+                else if (hit.transform.GetComponent<Health>().health >= 0)
+                {
+                    PhotonNetwork.Instantiate(playerHitVFX.name, hit.point, Quaternion.identity);
+                }
+
                 hit.transform.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage);
                 Debug.Log("hit!");
 
